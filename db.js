@@ -3,7 +3,7 @@ const mysql = require('mysql');
 const conn = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'clavesistema',
+  password: '78912300aA',
   database: 'restful_db'
 });
 //conectar a la base de datos
