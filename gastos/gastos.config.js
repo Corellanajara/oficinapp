@@ -5,7 +5,7 @@ exports.routesConfig = function (app) {
     let sql = "SELECT * FROM gastos";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
@@ -15,7 +15,7 @@ exports.routesConfig = function (app) {
     let sql = "SELECT * FROM gastos WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
@@ -25,7 +25,7 @@ exports.routesConfig = function (app) {
     let sql = "INSERT INTO gastos SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
