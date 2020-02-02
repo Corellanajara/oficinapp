@@ -1,7 +1,7 @@
 const conn = require('../db.js');
 exports.routesConfig = function (app) {
   //mostrar todos los clientes
-  capp.get('/api/clientes',(req, res) => {
+  app.get('/api/clientes',(req, res) => {
     let sql = "SELECT * FROM cliente";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
