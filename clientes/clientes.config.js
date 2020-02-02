@@ -1,17 +1,13 @@
 const conn = require('../db.js');
 exports.routesConfig = function (app) {
   //mostrar todos los clientes
-  const bodyParser = require('body-parser');
-  app.use(bodyParser.json());
-
-  app.get('/api/clientes',(req, res) => {
+  capp.get('/api/clientes',(req, res) => {
     let sql = "SELECT * FROM cliente";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
-
 
   //Mostrar un solo gasto
   app.get('/api/clientes/:id',(req, res) => {
