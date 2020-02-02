@@ -8,7 +8,7 @@ exports.routesConfig = function (app) {
     let sql = "SELECT * FROM tipoGasto";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
@@ -18,7 +18,7 @@ exports.routesConfig = function (app) {
     let sql = "SELECT * FROM tipoGasto WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
