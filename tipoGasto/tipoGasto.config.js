@@ -1,8 +1,11 @@
 const conn = require('../db.js');
 exports.routesConfig = function (app) {
-  //mostrar todos los gastos
-  app.get('/api/gastos',(req, res) => {
-    let sql = "SELECT * FROM gastos";
+  //mostrar todos los tipoGasto
+  const bodyParser = require('body-parser');
+  app.use(bodyParser.json());
+
+  app.get('/api/tipoGasto',(req, res) => {
+    let sql = "SELECT * FROM tipoGasto";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -11,8 +14,8 @@ exports.routesConfig = function (app) {
 
 
   //Mostrar un solo gasto
-  app.get('/api/gastos/:id',(req, res) => {
-    let sql = "SELECT * FROM gastos WHERE id="+req.params.id;
+  app.get('/api/tipoGasto/:id',(req, res) => {
+    let sql = "SELECT * FROM tipoGasto WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -20,9 +23,11 @@ exports.routesConfig = function (app) {
   });
 
   //Agregar uno
-  app.post('/api/gastos',(req, res) => {
-    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha};
-    let sql = "INSERT INTO gastos SET ?";
+  app.post('/api/tipoGasto',(req, res) => {
+    let data = {titulo: req.body.titulo, codigo: req.body.codigo};
+    let sql = "INSERT INTO tipoGasto SET ?";
+    console.log(data);
+    console.log(req);
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -30,8 +35,8 @@ exports.routesConfig = function (app) {
   });
 
   //Actualizar gasto
-  app.put('/api/gastos/:id',(req, res) => {
-    let sql = "UPDATE product SET product_name='"+req.body.product_name+"', product_price='"+req.body.product_price+"' WHERE product_id="+req.params.id;
+  app.put('/api/tipoGasto/:id',(req, res) => {
+    let sql = "UPDATE cliente SET titulo='"+req.body.titulo+"', codigo='"+req.body.codigo+"' WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
@@ -39,8 +44,8 @@ exports.routesConfig = function (app) {
   });
 
   //Borrar gasto
-  app.delete('/api/gastos/:id',(req, res) => {
-    let sql = "DELETE FROM product WHERE product_id="+req.params.id+"";
+  app.delete('/api/tipoGasto/:id',(req, res) => {
+    let sql = "DELETE FROM tipoGasto WHERE id="+req.params.id+"";
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
         res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

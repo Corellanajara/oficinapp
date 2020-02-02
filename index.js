@@ -9,10 +9,12 @@ const gastos = require('./gastos/gastos.config.js');
 const facturas = require('./facturas/facturas.config.js');
 const categorias = require('./categorias/categorias.config.js');
 //const clientes = require('./clientes/clientes.config.js');
+const tipoGastos = require('./tipoGasto/tipoGasto.config.js');
 
 gastos.routesConfig(app);
 //clientes.routesConfig(app);
 categorias.routesConfig(app);
+tipoGastos.routesConfig(app);
 
 app.get('/api/clientes',(req, res) => {
   let sql = "SELECT * FROM cliente";
