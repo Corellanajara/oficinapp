@@ -25,7 +25,7 @@ exports.routesConfig = function (app) {
     let sql = "INSERT INTO factura SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
-      res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
+      res.send(JSON.stringify(results));
     });
   });
 
