@@ -17,6 +17,8 @@ const clientes = require('./clientes/clientes.config.js');
 const tipoGastos = require('./tipoGasto/tipoGasto.config.js');
 const productos = require('./productos/productos.config.js');
 const ventas = require('./ventas/ventas.config.js');
+const tipoProducto = require('./tipoProducto/tipoProducto.config.js');
+
 
 gastos.routesConfig(app);
 clientes.routesConfig(app);
@@ -24,7 +26,7 @@ categorias.routesConfig(app);
 tipoGastos.routesConfig(app);
 productos.routesConfig(app);
 ventas.routesConfig(app);
-
+tipoProducto.routesConfig(app);
 
 //Servidor corriendo
 app.listen(3500,() =>{
