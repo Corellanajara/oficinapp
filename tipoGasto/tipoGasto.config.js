@@ -24,7 +24,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/tipoProducto',(req, res) => {
-    let data = {titulo: req.body.titulo, codigo: req.body.codigo};
+    let data = {titulo: req.body.titulo, codigo: req.body.codigo , estado : true};
     let sql = "INSERT INTO tipoProducto SET ?";
     console.log(data);
     console.log(req);
