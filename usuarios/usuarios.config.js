@@ -19,8 +19,10 @@ exports.routesConfig = function (app) {
       console.log(results);
       if(results){
         console.log(results);
+        res.send(JSON.stringify(results));
       }else{
         console.log("NO HAY RESULTADOS");
+        res.send(JSON.stringify([]));
       }
 
     })
