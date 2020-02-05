@@ -18,7 +18,7 @@ const tipoGastos = require('./tipoGasto/tipoGasto.config.js');
 const productos = require('./productos/productos.config.js');
 const ventas = require('./ventas/ventas.config.js');
 const tipoProducto = require('./tipoProducto/tipoProducto.config.js');
-const usuarios = require('./ventas/ventas.config.js');
+const usuarios = require('./usuarios/usuarios.config.js');
 
 gastos.routesConfig(app);
 clientes.routesConfig(app);
