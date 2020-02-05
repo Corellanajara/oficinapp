@@ -14,6 +14,7 @@ exports.routesConfig = function (app) {
     let clave = req.body.clave; //DESHACHEAR O ALGO
     let sql = "select * from usuario where usuario = '"+usuario+"' and clave = '"+clave+"' ";
     let query = conn.query(sql,(err,results)=>{
+      console.log(results);
       if(results){
         console.log(results);
       }else{
