@@ -24,13 +24,16 @@ exports.routesConfig = function (app) {
     let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha};
     let sql = "INSERT INTO ventas SET ?";
     let detalles = req.body.detalles;
+console.log(detalles);
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
-      if(results.insertId>0 && detalle){
+     console.log(results)
+     console.log(results.insertId)
+      if(results.insertId>0 && detalles){
         for(let i = 0 ; i < detalles.length;i++){
           var detalle = detalles[i];
           sql = "insert into detalle_venta set ?";
-          data = {id_producto:detalle.id_producto,titulo:detalle.titulo,precio:detalle.precio,cantidad:detalle.cantidad};
+          data = {id_producto:detalle.id_producto,id_venta:results.insertId,titulo:detalle.titulo,precio:detalle.precio,cantidad:detalle.cantidad};
           conn.query(sql, data,(err, results) => {
             if(err) throw err;
           })
@@ -41,8 +44,8 @@ exports.routesConfig = function (app) {
   });
 
   //Actualizar gasto
-  app.put('/api/ventas/:id',(req, res) => {
-    let sql = "UPDATE product SET product_name='"+req.body.product_name+"', product_price='"+req.body.product_price+"' WHERE product_id="+req.params.id;
+   app.put('/api/ventas/:id',(req, res) => {
+    let sql = "UPDATE ventas SET id_cliente='"+req.body.id_cliente+"', fecha='"+req.body.fecha+"',estado = '"+req.body.estado+"' WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
