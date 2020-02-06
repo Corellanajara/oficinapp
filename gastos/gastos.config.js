@@ -21,7 +21,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/gastos',(req, res) => {
-    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha};
+    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha,estado:1};
     let sql = "INSERT INTO gastos SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
@@ -31,7 +31,7 @@ exports.routesConfig = function (app) {
 
   //Actualizar gasto
   app.put('/api/gastos/:id',(req, res) => {
-    let sql = "UPDATE product SET product_name='"+req.body.product_name+"', product_price='"+req.body.product_price+"' WHERE product_id="+req.params.id;
+    let sql = "UPDATE product SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"', estado='"+req.body.estado+"'    WHERE product_id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
