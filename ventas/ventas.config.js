@@ -42,7 +42,7 @@ exports.routesConfig = function (app) {
 
   //Actualizar gasto
   app.put('/api/ventas/:id',(req, res) => {
-    let sql = "UPDATE product SET id_cliente='"+req.body.id_cliente+"', fecha='"+req.body.fecha+"',estado = '"+req.body.estado+"' WHERE id="+req.params.id;
+    let sql = "UPDATE ventas SET id_cliente='"+req.body.id_cliente+"', fecha='"+req.body.fecha+"',estado = '"+req.body.estado+"' WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
