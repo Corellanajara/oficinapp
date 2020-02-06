@@ -24,7 +24,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/tipoGasto',(req, res) => {
-    let data = {titulo: req.body.titulo, codigo: req.body.codigo};
+    let data = {titulo: req.body.titulo, codigo: req.body.codigo,estado:1};
     let sql = "INSERT INTO tipoGasto SET ?";
     console.log(data);
     console.log(req);
@@ -36,7 +36,7 @@ exports.routesConfig = function (app) {
 
   //Actualizar gasto
   app.put('/api/tipoGasto/:id',(req, res) => {
-    let sql = "UPDATE cliente SET titulo='"+req.body.titulo+"', codigo='"+req.body.codigo+"' WHERE id="+req.params.id;
+    let sql = "UPDATE tipoGasto SET titulo='"+req.body.titulo+"', codigo='"+req.body.codigo+"', estado = '"+req.body.estado+"' WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));
