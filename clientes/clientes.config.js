@@ -27,7 +27,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/clientes',(req, res) => {
-    let data = {estado:true,nombre: req.body.nombre, giro: req.body.giro,rut:req.body.rut,direccion:req.body.direccion,comuna:req.body.comuna,ciudad:req.body.ciudad,contacto:req.body.contacto,tipoCompra:req.body.tipoCompra};
+    let data = {estado:true,nombre: req.body.nombre, giro: req.body.giro,rut:req.body.rut,direccion:req.body.direccion,comuna:req.body.comuna,ciudad:req.body.ciudad,contacto:req.body.contacto,tipoCompra:req.body.tipoCompra,idEmpresa : req.body.idEmpresa};
     let sql = "INSERT INTO cliente SET ?";
     console.log(data);
     console.log(req);
