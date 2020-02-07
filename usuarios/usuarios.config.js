@@ -17,9 +17,16 @@ exports.routesConfig = function (app) {
     console.log(req.body);
     let query = conn.query(sql,(err,results)=>{
       console.log(results);
+
       if(results){
-        console.log(results);
-        res.send(JSON.stringify(results));
+        console.log(results[0].idEmpresa);
+        var idEmpresa = results[0].idEmpresa;
+        sql = "select * from empresa where id = "+idEmpresa;
+        var data = {usuario : results , empresa : []};
+        query = conn.query(sql,(error,resultados)=>{
+            data.empresa = resultados;
+            res.send(JSON.stringify(data));
+        })        
       }else{
         console.log("NO HAY RESULTADOS");
         res.send(JSON.stringify([]));
