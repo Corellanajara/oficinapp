@@ -3,12 +3,13 @@ exports.routesConfig = function (app) {
   //mostrar todos los clientes
   app.get('/api/clientes',(req, res) => {
     console.log(req.headers);
-    console.log(req.headers.empresa);
+    console.log(req.headers.idEmpresa);
     var idEmpresa = req.headers.idEmpresa;
     if(!idEmpresa){
       res.send(JSON.stringify({}));
     }
     let sql = "SELECT * FROM cliente where idEmpresa = "+idEmpresa;
+    console.log(sql);
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
