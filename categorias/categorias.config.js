@@ -33,7 +33,6 @@ exports.routesConfig = function (app) {
       res.send(JSON.stringify(results));
     });
   });
-  create table subCategoria ( id int primary key auto_increment , titulo varchar(200) , urlImagen varchar(200),urlCard varchar(200) , idCategoria int);
 
   //Agregar uno
   app.post('/api/categorias',(req, res) => {
