@@ -5,7 +5,11 @@ exports.routesConfig = function (app) {
   app.use(bodyParser.json());
 
   app.get('/api/tipoProducto',(req, res) => {
-    let sql = "SELECT * FROM tipoProducto";
+    var idEmpresa = req.headers.idempresa;
+    if(!idEmpresa){
+      res.send(JSON.stringify({}));
+    }
+    let sql = "SELECT * FROM tipoProducto where idEmpresa = "+idEmpresa;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
@@ -24,7 +28,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/tipoProducto',(req, res) => {
-    let data = {titulo: req.body.titulo, codigo: req.body.codigo , estado : 1};
+    let data = {titulo: req.body.titulo, codigo: req.body.codigo , estado : 1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario};
     let sql = "INSERT INTO tipoProducto SET ?";
     console.log(data);
     console.log(req);

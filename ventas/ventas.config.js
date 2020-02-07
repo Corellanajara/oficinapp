@@ -2,7 +2,11 @@ const conn = require('../db.js');
 exports.routesConfig = function (app) {
   //mostrar todos los ventas
   app.get('/api/ventas',(req, res) => {
-    let sql = "SELECT * FROM ventas";
+    var idEmpresa = req.headers.idempresa;
+    if(!idEmpresa){
+      res.send(JSON.stringify({}));
+    }
+    let sql = "SELECT * FROM ventas where idEmpresa = "+idEmpresa ;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
@@ -21,7 +25,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/ventas',(req, res) => {
-    let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha,estado:1};
+    let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha,estado:1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario};
     let sql = "INSERT INTO ventas SET ?";
     let detalles = req.body.detalles;
     let query = conn.query(sql, data,(err, results) => {

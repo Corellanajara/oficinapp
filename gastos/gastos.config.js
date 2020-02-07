@@ -2,7 +2,11 @@ const conn = require('../db.js');
 exports.routesConfig = function (app) {
   //mostrar todos los gastos
   app.get('/api/gastos',(req, res) => {
-    let sql = "SELECT * FROM gastos";
+    var idEmpresa = req.headers.idempresa;
+    if(!idEmpresa){
+      res.send(JSON.stringify({}));
+    }    
+    let sql = "SELECT * FROM gastos where idEmpresa = "+idEmpresa;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
@@ -21,7 +25,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/gastos',(req, res) => {
-    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha,estado:1};
+    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha,estado:1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario}
     let sql = "INSERT INTO gastos SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
