@@ -18,6 +18,22 @@ exports.routesConfig = function (app) {
       res.send(JSON.stringify(results));
     });
   });
+  app.get('/api/subCategorias/:id',(req, res) => {
+    let sql = "SELECT * FROM categorias WHERE idCategoria="+req.params.id;
+    let query = conn.query(sql, (err, results) => {
+      if(err) throw err;
+      res.send(JSON.stringify(results));
+    });
+  });
+  app.post('/api/subCategorias',(req, res) => {
+    let data = {titulo: req.body.titulo, urlImagen: req.body.urlImagen,urlCard:req.body.urlCard,idCategoria : req.body.idCategoria};
+    let sql = "INSERT INTO subCategorias SET ?";
+    let query = conn.query(sql, data,(err, results) => {
+      if(err) throw err;
+      res.send(JSON.stringify(results));
+    });
+  });
+  create table subCategoria ( id int primary key auto_increment , titulo varchar(200) , urlImagen varchar(200),urlCard varchar(200) , idCategoria int);
 
   //Agregar uno
   app.post('/api/categorias',(req, res) => {
