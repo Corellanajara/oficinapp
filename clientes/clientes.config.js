@@ -3,8 +3,8 @@ exports.routesConfig = function (app) {
   //mostrar todos los clientes
   app.get('/api/clientes',(req, res) => {
     console.log(req.headers);
-    console.log(req.headers.idEmpresa);
-    var idEmpresa = req.headers.idEmpresa;
+    console.log(req.headers.idempresa);
+    var idEmpresa = req.headers.idempresa;
     if(!idEmpresa){
       res.send(JSON.stringify({}));
     }
