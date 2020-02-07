@@ -4,7 +4,11 @@ exports.routesConfig = function (app) {
   app.get('/api/clientes',(req, res) => {
     console.log(req.headers);
     console.log(req.headers.empresa);
-    let sql = "SELECT * FROM cliente";
+    var idEmpresa = req.headers.idEmpresa;
+    if(!idEmpresa){
+      res.send(JSON.stringify({}));
+    }
+    let sql = "SELECT * FROM cliente where idEmpresa = "+idEmpresa;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
