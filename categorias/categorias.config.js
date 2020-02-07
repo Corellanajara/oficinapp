@@ -19,7 +19,7 @@ exports.routesConfig = function (app) {
     });
   });
   app.get('/api/subCategorias/:id',(req, res) => {
-    let sql = "SELECT * FROM categorias WHERE idCategoria="+req.params.id;
+    let sql = "SELECT * FROM subCategorias WHERE idCategoria="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
