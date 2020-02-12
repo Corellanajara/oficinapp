@@ -45,7 +45,7 @@ exports.routesConfig = function (app) {
         for(let i = 0 ; i < detalles.length;i++){
           var detalle = detalles[i];
           sql = "insert into detalle_venta set ?";
-          data = {id_producto:detalle.id_producto,titulo:detalle.titulo,precio:detalle.precio,cantidad:detalle.cantidad};
+          data = {id_venta:insertId,id_producto:detalle.id_producto,titulo:detalle.titulo,precio:detalle.precio,cantidad:detalle.cantidad};
           conn.query(sql, data,(err, results) => {
             if(err) throw err;
           })
