@@ -13,9 +13,10 @@ exports.routesConfig = function (app) {
     });
   });
 
-  app.get('api/ventas/detalle/:id',(req,res)=>{    
+  app.get('api/ventas/detalle/:id',(req,res)=>{
     var id = req.params.id;
     let sql = "SELECT * FROM detalle_venta where id_venta = "+id ;
+    console.log(sql);
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
