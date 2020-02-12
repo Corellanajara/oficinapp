@@ -38,6 +38,7 @@ exports.routesConfig = function (app) {
     let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha,estado:1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario};
     let sql = "INSERT INTO ventas SET ?";
     let detalles = req.body.detalles;
+    console.log(detalles)
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
       if(results.insertId>0 && detalle){
