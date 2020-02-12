@@ -41,7 +41,7 @@ exports.routesConfig = function (app) {
     console.log(detalles)
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
-      if(results.insertId>0 && detalle){
+      if(results.insertId>0 && detalles){
         for(let i = 0 ; i < detalles.length;i++){
           var detalle = detalles[i];
           sql = "insert into detalle_venta set ?";
