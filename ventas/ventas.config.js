@@ -13,6 +13,15 @@ exports.routesConfig = function (app) {
     });
   });
 
+  app.get('api/ventas/detalle/:id',(req,res)=>{    
+    var id = req.params.id;
+    let sql = "SELECT * FROM detalle_venta where id_venta = "+id ;
+    let query = conn.query(sql, (err, results) => {
+      if(err) throw err;
+      res.send(JSON.stringify(results));
+    });
+  })
+
 
   //Mostrar un solo gasto
   app.get('/api/ventas/:id',(req, res) => {
