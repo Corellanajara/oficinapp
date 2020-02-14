@@ -8,6 +8,8 @@ app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,Accept-Patch: application/example, text/example");
   next();
 });
+var cors = require('cors') 
+app.use(cors())
 
 const conn = require('./db.js');
 const gastos = require('./gastos/gastos.config.js');
