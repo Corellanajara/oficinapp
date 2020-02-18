@@ -35,7 +35,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/ventas',(req, res) => {
-    let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha,estado:1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario};
+    let data = {id_cliente: req.body.id_cliente, fecha: req.body.fecha,estado:1,idEmpresa : req.headers.idempresa,usuario:req.body.idUsuario};
     let sql = "INSERT INTO ventas SET ?";
     let detalles = req.body.detalles;
     console.log(detalles)

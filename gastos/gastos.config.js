@@ -25,7 +25,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/gastos',(req, res) => {
-    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha,estado:1,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario}
+    let data = {titulo: req.body.titulo,descripcion : req.body.descripcion, monto: req.body.monto,tipo:req.body.tipo,fecha:req.body.fecha,estado:1,tipoDocumento:req.body.tipoDocumento,idEmpresa : req.headers.idempresa,img:req.body.img,usuario:req.body.idUsuario}
     let sql = "INSERT INTO gastos SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
@@ -35,7 +35,7 @@ exports.routesConfig = function (app) {
 
   //Actualizar gasto
   app.put('/api/gastos/:id',(req, res) => {
-    let sql = "UPDATE gastos SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"', estado='"+req.body.estado+"'    WHERE id="+req.params.id;
+    let sql = "UPDATE gastos SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"',tipoDocumento='"+req.body.tipoDocumento+"',img:'"+req.body.img+"', estado='"+req.body.estado+"'    WHERE id="+req.params.id;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

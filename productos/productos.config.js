@@ -28,7 +28,7 @@ exports.routesConfig = function (app) {
 
   //Agregar uno
   app.post('/api/productos',(req, res) => {
-    let data = {titulo: req.body.titulo, precio: req.body.precio,codigo:req.body.codigo,idEmpresa : req.body.idEmpresa,usuario:req.body.idUsuario};
+    let data = {titulo: req.body.titulo, precio: req.body.precio,codigo:req.body.codigo,idEmpresa : req.headers.idempresa,usuario:req.body.idUsuario};
     let sql = "INSERT INTO productos SET ?";
     let query = conn.query(sql, data,(err, results) => {
       if(err) throw err;
