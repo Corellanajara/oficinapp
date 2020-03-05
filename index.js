@@ -25,6 +25,7 @@ const ventas = require('./ventas/ventas.config.js');
 const tipoProducto = require('./tipoProducto/tipoProducto.config.js');
 const usuarios = require('./usuarios/usuarios.config.js');
 const archivos = require('./archivos/archivos.config.js');
+const empresas = require('./empresas/empresa.config.js');
 
 gastos.routesConfig(app);
 clientes.routesConfig(app);
@@ -35,7 +36,7 @@ ventas.routesConfig(app);
 tipoProducto.routesConfig(app);
 usuarios.routesConfig(app);
 archivos.routesConfig(app);
-
+empresas.routesConfig(app);
 //Servidor corriendo
 app.listen(3500,() =>{
   console.log('Server started on port 3000...');
