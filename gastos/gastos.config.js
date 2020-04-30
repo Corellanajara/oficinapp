@@ -35,7 +35,12 @@ exports.routesConfig = function (app) {
 
   //Actualizar gasto
   app.put('/api/gastos/:id',(req, res) => {
-    let sql = "UPDATE gastos SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"',tipoDocumento='"+req.body.tipoDocumento+"',img:'"+req.body.img+"', estado='"+req.body.estado+"'    WHERE id="+req.params.id;
+    var sql = "";
+    if(req.body.img == "Sin imagen"){
+     sql = "UPDATE gastos SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"',tipoDocumento='"+req.body.tipoDocumento+"', estado='"+req.body.estado+"'    WHERE id="+req.params.id;
+    }else{
+     sql = "UPDATE gastos SET titulo='"+req.body.titulo+"', descripcion='"+req.body.descripcion+"' , monto='"+req.body.monto+"' , tipo='"+req.body.tipo+"', fecha='"+req.body.fecha+"',tipoDocumento='"+req.body.tipoDocumento+"',img='"+req.body.img+"', estado='"+req.body.estado+"'    WHERE id="+req.params.id;
+    }
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify({"status": 200, "error": null, "response": results}));

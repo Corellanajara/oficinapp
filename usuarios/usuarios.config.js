@@ -2,7 +2,7 @@ const conn = require('../db.js');
 exports.routesConfig = function (app) {
   //mostrar todos los clientes
   app.get('/api/usuarios',(req, res) => {
-    let sql = "SELECT * FROM usuario";
+    let sql = "SELECT * FROM usuario where idEmpresa = "+req.headers.idempresa;
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
       res.send(JSON.stringify(results));
