@@ -28,7 +28,7 @@ exports.routesConfig = function (app) {
   })
   //mostrar todos los empresas
   app.get('/api/cotizaciones',(req, res) => {
-    let sql = "SELECT * FROM cotizaciones ";
+    let sql = "SELECT * FROM cotizaciones where idEmpresa = "+req.headers.idempresa;
     console.log(sql);
     let query = conn.query(sql, (err, results) => {
       if(err) throw err;
